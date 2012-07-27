@@ -1,0 +1,123 @@
+テキストベースのBITMAPフォントBDFの半角/全角フォントをFONTX2に変換する鶴です。
+対応コードはJIS208/JIS213のみ。
+
+
+※JIS２面は１面と２面をつなげたあと間にENC143(ねたでEUCだけ3面(144～)以降も可能)のだみーを入れてください
+ENDCHAR
+～～1面のフォント～
+
+//2面開始
+STARTCHAR 008f
+ENCODING 143
+SWIDTH 960 0
+DWIDTH 12 0
+BBX 12 12 0 -2
+BITMAP
+0000
+0000
+0000
+0000
+0000
+0000
+0000
+0000
+0000
+0000
+0000
+ENDCHAR
+
+～～2面のフォント～
+
+//変換確認済み
+東雲全角14 shnmk14.bdf
+MPLUS　12x13
+蕨     12x12(JISX213)
+JIS漢　12x12(JISX213)
+
+2012/05/29
+JIS変換先にCP指定を追加(CP51932->指定CP経由)
+CMFの全角判定が変なので修正用フォント作成を追加
+SJISTEXTてーぶるが動かなくなっていたので修正
+&fonttx2[17]のテーブル総数が255をこえるとCMFフォントのぱっちが失敗することがあったので修正
+
+2012/05/14
+SJIS2004でエラーが出てたので修正
+
+2012/05/13
+jis->SJIS変化方法にSHIFT_JIS_2004を追加
+
+2012/05/12
+CMF3バイトEUCに対応
+
+2012/05/01
+FCSJISのフォントにUTF16テーブルを追加
+
+2012/04/25
+JIS->SJIS変換方法に追加
+XOR 0x20リマップ
+-0x2020
+M$ ISO-2022-JP経由
+
+2012/04/22
+CMFUSIONEUCの出力を変更
+TXTテーブルの正規表現+SJIS抽出位置を変更できるようにした
+
+2012/04/21
+FREECHEATSJIS用フォントを作成できるようにした
+
+2012/04/19
+CMFUSIONフォント作成で最後の文字コードがパッチされてなかったので修正
+JIS->SJIS変換方法を選べるようにした
+
+ftp://ftp.unicode.org/Public/MAPPINGS/OBSOLETE/EASTASIA/JIS/JIS0208.TXT TXTテーブル
+M$のやつ　｜0x80後51932->932
+
+2012/04/14
+6x12半角圧縮フォントのそーす出力がずれてたので修正
+
+2012/04/04
+半角6x12の圧縮フォント作成に対応
+PSPFILERも同じ描写方法みたいなのでFTX2ヘッダ付き圧縮バイナリとそーすっぽいのを出せるようにした
+(全角は半角6x12を2セット)
+
+2012/04/01
+CMFUSION_EUCMODのフォント作成に対応
+JIS-EUCを選択しCMF12x12でBDFを選択
+CMFのフォルダにfont_euc.datを置く
+
+CMFのUIにあう12x12(13)のフォントのみ(東雲かMPLUSで確認など)作成可能
+
+2012/03/30
+CMFUSIONの12x12っぽい出力に対応
+(GBKエンコードとあわないので上書きパッチ予定)
+
+2012/03/22
+半角の変換ができなくなっていたので修正
+
+2012/03/19
+全角の変換に対応
+JIS-SJIS変換、JIS-EUCを追加
+EUCの場合FONTX2の&へっだ[16]が2になります
+
+
+2012/03/13
+とりあえず作成。
+
+BY　(ﾟ∀ﾟ)
+
+参考リンク
+BDFフォント
+http://openlab.ring.gr.jp/efont/shinonome/
+http://mplus-fonts.sourceforge.jp/
+http://www.gelgoog.org/warabi12/
+http://www12.ocn.ne.jp/~imamura/jisx0213.html
+SJIS変換
+http://www.tohoho-web.com/wwwkanji.htm
+http://oku.edu.mie-u.ac.jp/~okumura/algo/
+http://www.unixuser.org/~euske/doc/kanjicode/
+http://www.d2.dion.ne.jp/~imady/charset/charcode_mame.html#SJIS_JIS
+JIS213 2004
+http://www.itscj.ipsj.or.jp/ISO-IR/229.pdf
+http://x0213.org/codetable/
+UNICODE
+ftp://ftp.unicode.org/Public/MAPPINGS/OBSOLETE/EASTASIA/JIS/JIS0208.TXT T
